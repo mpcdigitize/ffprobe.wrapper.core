@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ffprobe.wrapper.core
+namespace ffprobe.wrapper.core.console
 {
     class Program
     {
