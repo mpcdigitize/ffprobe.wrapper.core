@@ -27,6 +27,9 @@ namespace ffprobe.wrapper.core.console
             Console.WriteLine(output.FormatName);
             Console.WriteLine(output.DurationInSeconds);
 
+            Console.WriteLine(output.Album);
+            Console.WriteLine(output.Artist);
+            Console.WriteLine(output.Title);
 
 
 

@@ -66,6 +66,10 @@ namespace ffprobe.wrapper.core
             ffProbeOutput.FormatName = output.GetMetadata().format.format_name;
             ffProbeOutput.FormatLongName = output.GetMetadata().format.format_long_name;
             ffProbeOutput.DurationInSeconds = Convert.ToDouble(output.GetMetadata().format.duration);
+            ffProbeOutput.Album = output.GetMetadata().format.tags.album;
+            ffProbeOutput.Artist = output.GetMetadata().format.tags.artist;
+            ffProbeOutput.Title = output.GetMetadata().format.tags.title;
+
 
             for (int i = 0; i < ffProbeOutput.NumberOfStreams; i++)
             {
