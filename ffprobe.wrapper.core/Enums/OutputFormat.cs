@@ -6,5 +6,8 @@ namespace ffprobe.wrapper.core.Enums
 {
     public enum OutputFormat
     {
+
+        Json,
+        Xml
     }
 }
