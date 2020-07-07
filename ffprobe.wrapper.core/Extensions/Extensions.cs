@@ -16,5 +16,13 @@ namespace ffprobe.wrapper.core.Extensions
             return metadata;
         }
 
+
+        public static dynamic DeserializeOutput(this string readerOutput)
+        {
+
+            return JsonConvert.DeserializeObject<dynamic>(readerOutput);
+        
+        }
+
     }
 }

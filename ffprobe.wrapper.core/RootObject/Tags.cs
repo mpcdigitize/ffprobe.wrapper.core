@@ -7,10 +7,6 @@ namespace ffprobe.wrapper.core.Model
     public class Tags
     {
 
-        public  string album { get; set; }
-        public string artist { get; set; }
-        public string title { get; set; }
-
         public string WMMediaClassPrimaryID { get; set; }
         public string WMMediaClassSecondaryID { get; set; }
         public string Title { get; set; }

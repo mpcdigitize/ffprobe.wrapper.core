@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ffprobe.wrapper.core
 {
-    public class ReaderArguments
+    public class ReaderArguments : IReaderArguments
     {
         private Dictionary<string, string> _arguments;
 

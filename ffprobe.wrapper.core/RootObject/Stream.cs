@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ffprobe.wrapper.core.Model
 {
-    public class Stream
+    public class Stream 
     {
 
         public int index { get; set; }
