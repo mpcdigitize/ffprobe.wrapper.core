@@ -24,11 +24,19 @@ namespace ffprobe.wrapper.core
         public AudioFile GetInfo(string inputFile)
         {
 
-           return _parser.GetMp3Metadata(inputFile);
+           return _parser.GetAudioMetadata(inputFile);
         
         }
 
-        
+
+        public void ReadInput(string inputFile)
+        {
+            string stream = _reader.DoWork(inputFile, OutputFormat.Json);
+
+            Console.WriteLine(stream);
+        }
+
+
 
     }
 }

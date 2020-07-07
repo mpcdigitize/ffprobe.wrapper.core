@@ -25,7 +25,10 @@ namespace ffprobe.wrapper.core.console
 
 
             //string localFile = @"C:\input\ABBA.mp3";
-            string localFile = @"C:\input\12 Give Me Love.m4a";
+            //string localFile = @"C:\input\12 Give Me Love.m4a";
+            //string localFile = @"C:\input\Bruce Springsteen - Tunnel of Love - 01 - Ain't Got You (Album Version).flac";
+            //0a062e15d407c6040d4d75c43ee8b771
+            string localFile = @"C:\input\0a062e15d407c6040d4d75c43ee8b771.mp3";
             var ffprobe = new Ffprobe(path);
 
             var mp3 = ffprobe.GetInfo(localFile);
@@ -63,6 +66,11 @@ namespace ffprobe.wrapper.core.console
 
 
             Console.WriteLine("-----------END-------------");
+
+
+            ffprobe.ReadInput(localFile);
+
+
 
             //parser.ReadInput(localFile,OutputFormat.Json);
 

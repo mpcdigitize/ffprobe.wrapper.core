@@ -28,38 +28,141 @@ namespace ffprobe.wrapper.core
             Console.WriteLine(stream);
         }
 
-        public AudioFile GetMp3Metadata(string filePath)
+        public AudioFile GetAudioMetadata(string filePath)
         {
-            AudioFile mp3 = new AudioFile();
+            AudioFile audioFile = new AudioFile();
             string stream = _reader.DoWork(filePath, OutputFormat.Json);
             var deserializedStream = stream.DeserializeOutput();
             StreamInfo streamInfo;
             List<StreamInfo> Streams = new  List<StreamInfo>();
 
-            mp3.NumberOfStreams = deserializedStream.format.nb_streams;
-            mp3.Album = deserializedStream.format.tags.album;
-            mp3.Artist = deserializedStream.format.tags.artist;
-            mp3.AlbumArtist = deserializedStream.format.tags.album_artist;
-            mp3.ArtistSort = deserializedStream.format.tags.artist_sort;
-            mp3.Bitrate = deserializedStream.format.bit_rate;
-            mp3.Comment = deserializedStream.format.tags.comment;
-            mp3.Date = deserializedStream.format.tags.date;
-            mp3.Disc = deserializedStream.format.tags.disc;
-            mp3.Duration = deserializedStream.format.duration;
-            mp3.FileName = deserializedStream.format.filename;
-            mp3.FormatLongName = deserializedStream.format.format_long_name;
-            mp3.FormatName = deserializedStream.format.format_name;
-            mp3.Genre = deserializedStream.format.tags.genre;
-            mp3.Size = deserializedStream.format.size;
-            mp3.Title = deserializedStream.format.tags.title;
-            mp3.Track = deserializedStream.format.tags.track;
+            audioFile.NumberOfStreams = deserializedStream.format.nb_streams;
+            audioFile.Album = deserializedStream.format.tags.album;
 
-            for (int i = 0; i < mp3.NumberOfStreams ; i++)
+            if (audioFile.Album == null)
+            {
+
+                audioFile.Album = deserializedStream.format.tags.ALBUM;
+
+            }
+
+            audioFile.Artist = deserializedStream.format.tags.artist;
+
+            if (audioFile.Artist == null)
+            {
+
+                audioFile.Artist = deserializedStream.format.tags.ARTIST;
+
+            }
+
+            audioFile.Title = deserializedStream.format.tags.title;
+
+            if (audioFile.Title == null)
+            {
+
+                audioFile.Title = deserializedStream.format.tags.TITLE;
+
+            }
+
+            audioFile.AlbumArtist = deserializedStream.format.tags.album_artist;
+
+            if (audioFile.AlbumArtist == null)
+            {
+
+                audioFile.AlbumArtist = deserializedStream.format.tags.ALBUM_ARTIST;
+
+            }
+
+
+            audioFile.ArtistSort = deserializedStream.format.tags.artist_sort;
+
+            if (audioFile.ArtistSort == null)
+            {
+
+                audioFile.ArtistSort = deserializedStream.format.tags.ARTIST_SORT;
+
+            }
+
+            audioFile.Comment = deserializedStream.format.tags.comment;
+
+            if (audioFile.Comment == null)
+            {
+
+                audioFile.Comment = deserializedStream.format.tags.COMMENT;
+
+            }
+
+
+            audioFile.Date = deserializedStream.format.tags.date;
+
+            if (audioFile.Date == null)
+            {
+
+                audioFile.Date = deserializedStream.format.tags.DATE;
+
+            }
+
+
+            audioFile.Disc = deserializedStream.format.tags.disc;
+
+            if (audioFile.Disc == null)
+            {
+
+                audioFile.Disc = deserializedStream.format.tags.DISC;
+
+            }
+
+            audioFile.Genre = deserializedStream.format.tags.genre;
+
+            if (audioFile.Genre == null)
+            {
+
+                audioFile.Genre = deserializedStream.format.tags.GENRE;
+
+            }
+
+            audioFile.Track = deserializedStream.format.tags.track;
+
+            if (audioFile.Track == null)
+            {
+
+                audioFile.Track = deserializedStream.format.tags.TRACK;
+
+            }
+
+
+
+            audioFile.Bitrate = deserializedStream.format.bit_rate;
+
+            if (audioFile.Bitrate == null)
+            {
+
+                audioFile.Bitrate = deserializedStream.format.bits_per_raw_sample;
+
+            }
+
+            audioFile.Duration = deserializedStream.format.duration;
+            audioFile.FileName = deserializedStream.format.filename;
+            audioFile.FormatLongName = deserializedStream.format.format_long_name;
+            audioFile.FormatName = deserializedStream.format.format_name;         
+            audioFile.Size = deserializedStream.format.size;
+            
+            
+
+            for (int i = 0; i < audioFile.NumberOfStreams ; i++)
             {
                 streamInfo = new StreamInfo();
 
                 streamInfo.StreamIndex = deserializedStream.streams[i].index;
                 streamInfo.Bitrate = deserializedStream.streams[i].bit_rate;
+
+                if (streamInfo.Bitrate == null)
+                {
+
+                    streamInfo.Bitrate = deserializedStream.streams[i].bits_per_raw_sample;
+
+                }
+
                 streamInfo.Channels = deserializedStream.streams[i].channels;
                 streamInfo.ChannelsLayout = deserializedStream.streams[i].channel_layout;
                 streamInfo.CodecLongName = deserializedStream.streams[i].codec_long_name;
@@ -74,9 +177,9 @@ namespace ffprobe.wrapper.core
 
             }
 
-            mp3.Streams = Streams;
+            audioFile.Streams = Streams;
 
-            return mp3;
+            return audioFile;
 
         }
 
