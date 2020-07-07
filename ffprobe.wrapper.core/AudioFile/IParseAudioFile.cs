@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ffprobe.wrapper.core.Mp3
 {
-    public interface IParseMp3File: IGeneralInfo, IMp3Tag
+    public interface IParseAudioFile: IGeneralInfo, IAudioTag
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ffprobe.wrapper.core.Model
 {
-    public class Mp3File : IParseMp3File
+    public class AudioFile : IParseAudioFile
     {
         public string Bitrate { get ; set ; }
         public string Duration { get; set; }

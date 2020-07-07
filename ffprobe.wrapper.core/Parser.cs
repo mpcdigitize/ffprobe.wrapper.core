@@ -28,9 +28,9 @@ namespace ffprobe.wrapper.core
             Console.WriteLine(stream);
         }
 
-        public Mp3File GetMp3Metadata(string filePath)
+        public AudioFile GetMp3Metadata(string filePath)
         {
-            Mp3File mp3 = new Mp3File();
+            AudioFile mp3 = new AudioFile();
             string stream = _reader.DoWork(filePath, OutputFormat.Json);
             var deserializedStream = stream.DeserializeOutput();
             StreamInfo streamInfo;

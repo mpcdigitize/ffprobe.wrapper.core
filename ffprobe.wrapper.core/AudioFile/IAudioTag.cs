@@ -1,6 +1,6 @@
 ﻿namespace ffprobe.wrapper.core.Tags
 {
-    public interface IMp3Tag
+    public interface IAudioTag
     {
         string Album { get; set; }
         string AlbumArtist { get; set; }

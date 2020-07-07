@@ -6,7 +6,7 @@ namespace ffprobe.wrapper.core
     public interface IParser
     {
         AudioStreamFile GetAudioStreamMetadata(string filePath);
-        Mp3File GetMp3Metadata(string filePath);
+        AudioFile GetMp3Metadata(string filePath);
         void ReadInput(string inputFile, OutputFormat outputFormat);
     }
 }

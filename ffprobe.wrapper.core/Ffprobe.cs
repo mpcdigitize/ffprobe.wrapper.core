@@ -21,7 +21,7 @@ namespace ffprobe.wrapper.core
         }
 
 
-        public Mp3File GetInfo(string inputFile)
+        public AudioFile GetInfo(string inputFile)
         {
 
            return _parser.GetMp3Metadata(inputFile);

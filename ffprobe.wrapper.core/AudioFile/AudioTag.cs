@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ffprobe.wrapper.core.Tags
 {
-    public class Mp3Tag : IMp3Tag
+    public class AudioTag : IAudioTag
     {
         public string Album { get; set; }
         public string Artist { get; set; }

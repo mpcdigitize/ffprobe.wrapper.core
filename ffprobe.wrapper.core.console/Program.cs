@@ -24,7 +24,8 @@ namespace ffprobe.wrapper.core.console
             */
 
 
-            string localFile = @"C:\input\ABBA.mp3";
+            //string localFile = @"C:\input\ABBA.mp3";
+            string localFile = @"C:\input\12 Give Me Love.m4a";
             var ffprobe = new Ffprobe(path);
 
             var mp3 = ffprobe.GetInfo(localFile);
