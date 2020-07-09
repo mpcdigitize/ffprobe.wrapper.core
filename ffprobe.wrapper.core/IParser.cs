@@ -1,4 +1,5 @@
-﻿using ffprobe.wrapper.core.Enums;
+﻿using ffprobe.wrapper.core.AudioRoot;
+using ffprobe.wrapper.core.Enums;
 using ffprobe.wrapper.core.Model;
 
 namespace ffprobe.wrapper.core
@@ -8,5 +9,7 @@ namespace ffprobe.wrapper.core
         AudioStreamFile GetAudioStreamMetadata(string filePath);
         AudioFile GetAudioMetadata(string filePath);
         void ReadInput(string inputFile, OutputFormat outputFormat);
+
+        AudioRootFile GetAudioRootMetadata(string filePath);
     }
 }

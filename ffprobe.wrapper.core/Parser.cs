@@ -3,8 +3,10 @@ using ffprobe.wrapper.core.Enums;
 using ffprobe.wrapper.core.Extensions;
 using ffprobe.wrapper.core.Model;
 using ffprobe.wrapper.core.Mp3;
+using ffprobe.wrapper.core.AudioRoot;
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -27,6 +29,19 @@ namespace ffprobe.wrapper.core
 
             Console.WriteLine(stream);
         }
+
+
+        public AudioRootFile GetAudioRootMetadata(string filePath)
+        {
+ 
+            string stream = _reader.DoWork(filePath, OutputFormat.Json);
+            AudioRootFile metadata = JsonConvert.DeserializeObject<AudioRootFile>(stream);
+
+
+            return metadata;
+
+        }
+
 
         public AudioFile GetAudioMetadata(string filePath)
         {
@@ -193,18 +208,20 @@ namespace ffprobe.wrapper.core
             List<StreamInfo> Streams = new List<StreamInfo>();
 
 
-            audioStream.NumberOfStreams = 0;
+            audioStream.NumberOfStreams = deserializedStream.format.nb_streams; ;
 
-            audioStream.Bitrate = deserializedStream.format.bit_rate; ;
-            audioStream.Description = deserializedStream.format.tags.icy_description;
-            audioStream.Duration = deserializedStream.format.duration; ;
-            audioStream.FileName = deserializedStream.format.filename; ;
-            audioStream.FormatLongName = deserializedStream.format.format_long_name; ;
-            audioStream.FormatName = deserializedStream.format.format_name; ;
-            audioStream.Name = deserializedStream.format.tags.icy_name;
-            audioStream.Size = deserializedStream.format.size; ;
+
+
+            audioStream.Bitrate = deserializedStream.format.bit_rate; 
+            //audioStream.Description = deserializedStream.format.tags."icy-description";
+            audioStream.Duration = deserializedStream.format.duration; 
+            audioStream.FileName = deserializedStream.format.filename; 
+            audioStream.FormatLongName = deserializedStream.format.format_long_name; 
+            audioStream.FormatName = deserializedStream.format.format_name; 
+            //audioStream.Name = deserializedStream.format.tags.("icy-name");
+            audioStream.Size = deserializedStream.format.size; 
             audioStream.StreamUrl = deserializedStream.format.tags.StreamUrl;
-            audioStream.Url = deserializedStream.format.tags.icy_url;
+           // audioStream.Url = deserializedStream.format.tags.("icy-url");
 
 
             for (int i = 0; i < audioStream.NumberOfStreams; i++)

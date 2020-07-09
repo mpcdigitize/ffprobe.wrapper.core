@@ -1,4 +1,5 @@
-﻿using ffprobe.wrapper.core.Enums;
+﻿using ffprobe.wrapper.core.AudioRoot;
+using ffprobe.wrapper.core.Enums;
 using ffprobe.wrapper.core.Model;
 using System;
 using System.Collections.Generic;
@@ -21,11 +22,19 @@ namespace ffprobe.wrapper.core
         }
 
 
-        public AudioFile GetInfo(string inputFile)
+        public AudioRootFile GetAudioFileInfo(string inputFile)
         {
 
-           return _parser.GetAudioMetadata(inputFile);
+           return _parser.GetAudioRootMetadata(inputFile);
         
+        }
+
+
+        public AudioStreamFile GetAudioStreamInfo(string inputFile)
+        {
+
+            return _parser.GetAudioStreamMetadata(inputFile);
+
         }
 
 

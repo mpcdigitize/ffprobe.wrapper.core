@@ -12,112 +12,73 @@ namespace ffprobe.wrapper.core.console
         {
             Console.WriteLine("Hello World!");
 
-            //IParseAudioStream sr = new AudioStreamFile();
-           // IParseMp3File mp3 = new Mp3File();
-
             string path = @"C:\ffmpeg\ffprobe.exe";
-
-            /*
-            var argmnts = new ReaderArguments();
-            var freader = new FileReader(argmnts,path);
-            var parser = new Parser(freader);
-            */
-
 
             //string localFile = @"C:\input\ABBA.mp3";
             //string localFile = @"C:\input\12 Give Me Love.m4a";
             //string localFile = @"C:\input\Bruce Springsteen - Tunnel of Love - 01 - Ain't Got You (Album Version).flac";
+            //Gary Moore - Still Got the Blues - 01 - Moving On
+            //string localFile = @"C:\input\Gary Moore - Still Got the Blues - 01 - Moving On.flac";
             //0a062e15d407c6040d4d75c43ee8b771
             string localFile = @"C:\input\0a062e15d407c6040d4d75c43ee8b771.mp3";
             var ffprobe = new Ffprobe(path);
 
-            var mp3 = ffprobe.GetInfo(localFile);
+           // string streamFile = @"http://stream.revma.ihrhls.com/zc4802/hls.m3u8"; //at40
+            //string streamFile = @"http://media-sov.musicradio.com/LBCLondon?type=.flv&awsparams=kxsegs:||;&amsparams=playerid:UKRP;skey:1484626109;&kuid=LBH7UpJ-&amsparams%3Dplayerid%3AUKRP%3Bskey%3A1484712106&listenerid=6c8483299a871c0dba4b6177f4ad49a3&awparams=companionAds%3Atrue&rpempv=3.1.101;"; //lbc
+            //string streamFile = @"http://stream.revma.ihrhls.com/zc4802/hls.m3u8"; //at40
+            //string streamFile = @"http://stream.revma.ihrhls.com/zc4802/hls.m3u8"; //at40
+            //string streamFile = @"http://stream.revma.ihrhls.com/zc4802/hls.m3u8"; //at40
 
-
-
-            Console.WriteLine("No of Streams: " + mp3.NumberOfStreams);
-
-            Console.WriteLine("Title: " + mp3.Title);
-            Console.WriteLine("Artist: " + mp3.Artist);
-            Console.WriteLine("Album: " + mp3.Album);
-            Console.WriteLine("Bitrate: " + mp3.Bitrate);
-            Console.WriteLine("Duration: " + mp3.Duration);
-            Console.WriteLine("File Name: " + mp3.FileName);
-            Console.WriteLine("Format Name: " + mp3.FormatName);
-            Console.WriteLine("Format Long Name: " + mp3.FormatLongName);
-            Console.WriteLine("Size: " + mp3.Size);
-
-            Console.WriteLine("---------------------------------------");
-
-            foreach (var item in mp3.Streams)
-            {
-                Console.WriteLine("Index: " + item.StreamIndex);
-                Console.WriteLine("CodecName: " + item.CodecName);
-                Console.WriteLine("CodecLongName: " + item.CodecLongName);
-                Console.WriteLine("Bitrate: " + item.Bitrate);
-                Console.WriteLine("Channels: " + item.Channels);
-                Console.WriteLine("Layout: " + item.ChannelsLayout);
-                Console.WriteLine("Type: " + item.CodecType);
-                Console.WriteLine("Duration: " + item.Duration);
-                Console.WriteLine("SampleRate: " + item.SampleRate);
-                Console.WriteLine("---------------------------------------");
-
-            }
-
-
-            Console.WriteLine("-----------END-------------");
-
-
+            var audio = ffprobe.GetAudioFileInfo(localFile);
             ffprobe.ReadInput(localFile);
 
+            Console.WriteLine("--------------------------------------------------");
 
+            Console.WriteLine("File Name: " + audio.Format.FileName);
+            Console.WriteLine("Format Name: " + audio.Format.FormatName);
+            Console.WriteLine("Format Long Name: " + audio.Format.FormatLongName);
+            Console.WriteLine("Duration: " + audio.Format.Duration);
+            Console.WriteLine("Size: " + audio.Format.Size);
 
-            //parser.ReadInput(localFile,OutputFormat.Json);
+            
+            Console.WriteLine("Artist: " + audio.Format.Tags.Artist);
+            Console.WriteLine("Album: " + audio.Format.Tags.Album);
+            Console.WriteLine("Title: " + audio.Format.Tags.Title);
+            Console.WriteLine("Date: " + audio.Format.Tags.Date);
+            Console.WriteLine("AlbumArtist: " + audio.Format.Tags.AlbumArtist);
+            Console.WriteLine("ArtistSort: " + audio.Format.Tags.ArtistSort);
+            Console.WriteLine("Comment: " + audio.Format.Tags.Comment);
+            Console.WriteLine("Disc: " + audio.Format.Tags.Disc);
+            Console.WriteLine("Genre: " + audio.Format.Tags.Genre);
+            Console.WriteLine("Track: " + audio.Format.Tags.Track);
 
-            /*
-            var reader = new MetadataReader(@"C:\ffmpeg\ffprobe.exe");
-            //string localFile = @"C:\input\ABBA.mp3";
-            //string localFile = @"C:\input\00e3a0b59da1888666ac44f1eebe6e46.mp3";
-            string localFile = @"C:\input\12 Give Me Love.m4a";
-            //string localFile = @"C:\input\01 Faded.m4a";
-            //string localFile = @"C:\input\testWTV.wtv";
-            //string localFile = @"http://stream3.polskieradio.pl:8904/;stream";
-           // string localFile = @"http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1_mf_q";
+            Console.WriteLine("--------------------------------------------------");
 
-            var json = reader.DoWork(localFile, OutputFormat.Json);
-
-            reader.ParseJson(json);
-
-            var output = reader.ReadStream(localFile);
-
-
-            Console.WriteLine("---------------------------------------------------------------------");
-            Console.WriteLine(json);
-
-
-
-            Console.WriteLine(output.NumberOfStreams);
-            Console.WriteLine(output.FormatName);
-            Console.WriteLine(output.DurationInSeconds);
-
-            Console.WriteLine(output.Album);
-            Console.WriteLine(output.Artist);
-            Console.WriteLine(output.Title);
-
-
-
-            foreach (var item in output.Streams)
+            for (int i = 0; i < audio.Streams.Length; i++)
             {
-                Console.WriteLine(item.Index);
-                Console.WriteLine(item.Codec);
-                Console.WriteLine(item.CodecLongName);
-                Console.WriteLine(item.CodecType);
-                Console.WriteLine(item.Bitrate);
+                Console.WriteLine("Index: " + audio.Streams[i].Index);
+                Console.WriteLine("Codec Name: " + audio.Streams[i].CodecName);
+                Console.WriteLine("Codec Long Name: " + audio.Streams[i].CodecLongName);
+                Console.WriteLine("Codec Type: " + audio.Streams[i].CodecType);
+                Console.WriteLine("Bitrate: " + audio.Streams[i].Bitrate);
+                Console.WriteLine("Channels: " + audio.Streams[i].Channels);
+                Console.WriteLine("Channel Layout: " + audio.Streams[i].ChannelsLayout);
+                Console.WriteLine("Duration: " + audio.Streams[i].Duration);
+                Console.WriteLine("Sample Rate: " + audio.Streams[i].SampleRate);
 
-
+                Console.WriteLine("--------------------------------------------------");
             }
 
-            */
+
+
+            Console.WriteLine("--------------------END----------------------");
+
+
+            //ffprobe.ReadInput(streamFile);
+
+
+
+
 
         }
     }
