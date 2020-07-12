@@ -1,9 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Text;
 
-namespace ffprobe.wrapper.core.AudioRoot
+namespace ffprobe.wrapper.core
 {
     public class Format
     {
@@ -23,7 +24,7 @@ namespace ffprobe.wrapper.core.AudioRoot
         public string Size { get; set; }
 
         //[JsonProperty("tag")]
-        public Tags Tags { get; set; } 
+        public Tags Tags { get; set; } = new Tags();
 
 
 

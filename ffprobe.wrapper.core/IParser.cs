@@ -1,15 +1,9 @@
-﻿using ffprobe.wrapper.core.AudioRoot;
-using ffprobe.wrapper.core.Enums;
-using ffprobe.wrapper.core.Model;
+﻿using ffprobe.wrapper.core.Enums;
 
 namespace ffprobe.wrapper.core
 {
     public interface IParser
     {
-        AudioStreamFile GetAudioStreamMetadata(string filePath);
-        AudioFile GetAudioMetadata(string filePath);
-        void ReadInput(string inputFile, OutputFormat outputFormat);
-
-        AudioRootFile GetAudioRootMetadata(string filePath);
+        IFfprobeObject GetMetadata(string filePath);
     }
 }

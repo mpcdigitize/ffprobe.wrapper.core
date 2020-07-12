@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ffprobe.wrapper.core.AudioRoot
+namespace ffprobe.wrapper.core
 {
     public class Tags
     {
@@ -36,5 +36,32 @@ namespace ffprobe.wrapper.core.AudioRoot
 
         [JsonProperty("comment")]
         public string Comment { get; set; }
+
+        [JsonProperty("icy-name")]
+        public string IcyName { get; set; }
+
+        [JsonProperty("icy-url")]
+        public string IcyUrl { get; set; }
+
+        [JsonProperty("icy-br")]
+        public string IcyBitrate { get; set; }
+
+        [JsonProperty("StreamUrl")]
+        public string IcyStreamUrl { get; set; }
+
+        [JsonProperty("icy-description")]
+        public string IcyDescription { get; set; }
+
+        [JsonProperty("icy-genre")]
+        public string IcyGenre { get; set; }
+
+        [JsonProperty("StreamTitle")]
+        public string IcyStreamTitle { get; set; }
+
+        [JsonProperty("WM/SubTitle")]
+        public string WtvEpisodeTitle { get; set; }
+
+        [JsonProperty("WM/SubTitleDescription")]
+        public string WtvEpisodeDescription { get; set; }
     }
 }
